@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 1. XML 声明：含义：声明这是一个 XML 文件，并指定了版本和字符编码（UTF-8）。 -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 2. 项目基本信息：含义：定义了项目的根元素 <project>，并引用了 Maven 的命名空间和模式位置。<modelVersion> 指定了 POM 模型的版本，通常是 4.0.0。 -->
+
+    <groupId>com.daqinzhonggong</groupId>
+    <!-- 3. 项目坐标：<groupId>：组织或公司域名的倒序，用于区分不同的组织 -->
+    <artifactId>rbac-boot-mp</artifactId>
+    <!-- 3. 项目坐标：<artifactId>：项目的唯一标识符 -->
+    <packaging>pom</packaging>
+    <!-- 3. 项目坐标：<packaging>：指定打包类型为 pom，表示这是一个多模块项目 -->
+    <version>2023.01.21.mp</version>
+    <!-- 3. 项目坐标：<version>：项目的版本号 -->
+
+    <modules>
+        <module>rbac-boot-mp-common</module>
+        <module>rbac-boot-mp-logging</module>
+        <module>rbac-boot-mp-system</module>
+        <module>rbac-boot-mp-tools</module>
+        <module>rbac-boot-mp-generator</module>
+    </modules>
+    <!-- 4. 模块列表：含义：定义了该项目包含的子模块，每个 <module> 标签对应一个子模块的目录名称。 -->
+
+    <name>rbac-boot-mp 后台管理</name>
+    <url>https://XXX.com</url>
+    <!-- 5. 项目元数据：含义：<name>：项目的名称。<url>：项目的主页 URL。 -->
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.4</version>
+    </parent>
+    <!-- 6. 父级依赖：含义：指定了该项目继承自 Spring Boot 的父 POM，从而继承其默认配置和依赖管理。 -->
+
+    <properties>
+        <log4j2.version>2.17.0</log4j2.version>
+        <logback.version>1.2.9</logback.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <log4jdbc.version>1.16</log4jdbc.version>
+        <swagger.version>2.9.2</swagger.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <druid.version>1.2.8</druid.version>
+        <commons-pool2.version>2.11.1</commons-pool2.version>
+    </properties>
+    <!-- 7. 属性定义：含义：定义了一些常用的属性值，如依赖版本号、编译编码等，方便在后续的依赖中引用。 -->
+
+    <dependencies>
+        <!-- 8. 依赖管理：含义：定义了项目所需的依赖库。每个 <dependency> 标签包含了 groupId、artifactId 和 version，分别表示依赖库的组织、名称和版本。部分依赖还可能包含 <scope> 来指定依赖的作用范围（如 test 表示仅用于测试）。 -->
+
+        <!--Spring boot Web容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--Spring boot 测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--Spring boot 安全框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- spring boot 缓存 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <!-- spring boot 验证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!--Spring boot Redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- mybatis -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.3.1</version>
+        </dependency>
+
+        <!--spring boot 集成redis所需common-pool2-->
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!--监控sql日志-->
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+            <version>${log4jdbc.version}</version>
+        </dependency>
+
+        <!-- Swagger UI 相关 -->
+        <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-spring-boot-starter -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
+        <!--Mysql依赖包-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- druid数据源驱动 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.dreamlu/mica-ip2region -->
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>mica-ip2region</artifactId>
+            <version>2.7.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.7</version>
+        </dependency>
+
+        <!--lombok插件-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- excel工具 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
+        <!-- Java图形验证码 -->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <!-- 9. 构建配置：含义：定义了构建过程中使用的插件。这里配置了 maven-surefire-plugin 插件，用于控制测试执行行为，<skip>true</skip> 表示跳过测试。 -->
+
+        <plugins>
+            <!-- 打包时跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <repositories>
+
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <!-- 10. 仓库配置：含义：<repositories>：定义了 Maven 从哪里下载依赖库的仓库地址。这里使用了阿里云的 Maven 仓库。 -->
+
+    </repositories>
+
+    <pluginRepositories>
+
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <!-- 10. 仓库配置：含义：<pluginRepositories>：定义了 Maven 从哪里下载插件的仓库地址。同样使用了阿里云的 Maven 仓库，并且禁用了快照版本的下载。 -->
+
+    </pluginRepositories>
+
+</project>
